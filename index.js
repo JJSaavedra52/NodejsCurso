@@ -1,6 +1,11 @@
 const express = require('express');
+const routerApi = require('./routes');
+
+
 const app = express();
 const port = 3000;
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hola mi server en express');
@@ -10,12 +15,7 @@ app.get('/nueva-ruta', (req, res) => {
   res.send('Hola soy una nueva ruta');
 })
 
-app.get('/products', (req, res) => {
-  res.json({
-    name: 'Product 1',
-    price: 1000
-  });
-})
+routerApi(app);
 
 app.listen(port, () => {
   console.log(`La aplicación se esta escuchando en http://localhost:${port}`);
